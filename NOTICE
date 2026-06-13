@@ -1,0 +1,13 @@
+Staffkey anonymization layer (staffkey-privacy)
+Copyright 2026 META Project
+
+"Staffkey" is a product operated by META Project, the named data controller
+(NIP 686-118-80-14).
+
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+This package is the open, auditable part of Staffkey: it transforms a user's private rows into
+poolable, anonymized points and enforces the k-anonymity floor and per-contributor caps. It has
+no dependencies and performs no network or database I/O, so it can be read in full to verify
+what data is eligible to leave the user's private store. The Staffkey dataset, aggregation
+service, and benchmark are NOT covered by this license and remain proprietary.
