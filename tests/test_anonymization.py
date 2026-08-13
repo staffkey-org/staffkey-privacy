@@ -1,4 +1,6 @@
 # SPDX-License-Identifier: Apache-2.0
+from decimal import Decimal
+
 from staffkey_privacy import (
     K_ANONYMITY_FLOOR,
     PrivateRow,
@@ -9,7 +11,7 @@ from staffkey_privacy import (
 )
 
 
-def _point(key: str):
+def _point(key: str, day_rate: Decimal = Decimal("950.00")):
     row = PrivateRow(
         user_id=key,
         period="2026-05",
@@ -18,11 +20,17 @@ def _point(key: str):
         stack="Java",
         city="Kraków",
         client_sector="fintech",
-        day_rate=950.0,
+        day_rate=day_rate,
         days_to_pay=21,
         verified=True,
     )
     return to_poolable(row, salt="test-salt")
+
+
+def test_day_rate_is_quantized_decimal():
+    p = _point("u", day_rate=Decimal("950.005"))
+    assert isinstance(p.day_rate, Decimal)
+    assert p.day_rate == Decimal("950.01")  # ROUND_HALF_UP to grosz
 
 
 def test_to_poolable_drops_user_id():
