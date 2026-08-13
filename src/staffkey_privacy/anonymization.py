@@ -18,6 +18,9 @@ import hashlib
 import hmac
 from collections.abc import Iterable, Sequence
 from dataclasses import dataclass
+from decimal import ROUND_HALF_UP, Decimal
+
+_CENT = Decimal("0.01")
 
 # Minimum distinct contributors per published cell. No cell below this is ever emitted.
 K_ANONYMITY_FLOOR = 5
@@ -36,7 +39,7 @@ class PrivateRow:
     stack: str | None
     city: str | None
     client_sector: str | None
-    day_rate: float
+    day_rate: Decimal  # PLN, exact to grosz
     days_to_pay: int | None
     verified: bool  # bank-confirmed
 
@@ -52,7 +55,7 @@ class PoolablePoint:
     stack: str | None
     city: str | None
     client_sector: str | None
-    day_rate: float
+    day_rate: Decimal  # PLN, exact to grosz
     days_to_pay: int | None
     verified: bool
 
@@ -76,7 +79,7 @@ def to_poolable(row: PrivateRow, *, salt: str) -> PoolablePoint:
         stack=row.stack,
         city=row.city,
         client_sector=row.client_sector,
-        day_rate=round(row.day_rate, 2),
+        day_rate=row.day_rate.quantize(_CENT, rounding=ROUND_HALF_UP),
         days_to_pay=row.days_to_pay,
         verified=row.verified,
     )
