@@ -1,6 +1,8 @@
 # SPDX-License-Identifier: Apache-2.0
 from decimal import Decimal
 
+import pytest
+
 from staffkey_privacy import (
     K_ANONYMITY_FLOOR,
     PrivateRow,
@@ -31,6 +33,23 @@ def test_day_rate_is_quantized_decimal():
     p = _point("u", day_rate=Decimal("950.005"))
     assert isinstance(p.day_rate, Decimal)
     assert p.day_rate == Decimal("950.01")  # ROUND_HALF_UP to grosz
+
+
+def test_to_poolable_rejects_non_decimal_day_rate():
+    row = PrivateRow(
+        user_id="u",
+        period="2026-05",
+        role="Engineer",
+        seniority="Senior",
+        stack="Java",
+        city="Kraków",
+        client_sector="fintech",
+        day_rate=950.0,  # float, not Decimal
+        days_to_pay=21,
+        verified=True,
+    )
+    with pytest.raises(TypeError, match="day_rate"):
+        to_poolable(row, salt="test-salt")
 
 
 def test_to_poolable_drops_user_id():
