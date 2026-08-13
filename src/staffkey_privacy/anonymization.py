@@ -39,7 +39,7 @@ class PrivateRow:
     stack: str | None
     city: str | None
     client_sector: str | None
-    day_rate: Decimal  # PLN, exact to grosz
+    day_rate: Decimal  # PLN; precision not enforced here — quantized to grosz in to_poolable()
     days_to_pay: int | None
     verified: bool  # bank-confirmed
 
@@ -71,6 +71,10 @@ def contributor_key(user_id: str, *, salt: str) -> str:
 
 def to_poolable(row: PrivateRow, *, salt: str) -> PoolablePoint:
     """Strip identity, keep only derived scalars + dimensions."""
+    if not isinstance(row.day_rate, Decimal):
+        raise TypeError(
+            f"PrivateRow.day_rate must be a Decimal, got {type(row.day_rate).__name__}"
+        )
     return PoolablePoint(
         contributor_key=contributor_key(row.user_id, salt=salt),
         period=row.period,
