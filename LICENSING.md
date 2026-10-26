@@ -15,4 +15,4 @@ The proprietary backend **imports** this open package rather than copying it, so
 physical, not just documentary.
 
 **Contributions:** by Developer Certificate of Origin (DCO) — sign commits with `-s`.
-**Trademark:** "Staffkey" and "META Project" are not covered by any code license here.
+**Trademark:** "Staffkey" and "META Project Tomasz Mierzwa" are not covered by any code license here.
