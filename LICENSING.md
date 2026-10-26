@@ -14,5 +14,5 @@ that earns trust is open and auditable, while the part that protects the dataset
 The proprietary backend **imports** this open package rather than copying it, so the boundary is
 physical, not just documentary.
 
-**Contributions:** by Developer Certificate of Origin (DCO) — sign commits with `-s`.
-**Trademark:** "Staffkey" and "META Project" are not covered by any code license here.
+**Contributions:** by Developer Certificate of Origin (DCO): sign commits with `-s`.
+**Trademark:** "Staffkey" and "META Project Tomasz Mierzwa" are not covered by any code license here.

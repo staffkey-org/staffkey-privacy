@@ -2,8 +2,12 @@
 
 **The open, auditable anonymization layer of [Staffkey](https://staffkey.pl).** Apache-2.0 licensed.
 
-Operated by **META Project** (named data controller). Methodology, k-anonymity thresholds, and
-"what never leaves your device" are documented at **https://staffkey.pl/metodologia**.
+Staffkey is run by **META Project Tomasz Mierzwa**: the processor for invoice data, and the
+controller for account, contact and security data. Invoices are processed on Staffkey's server in
+the EU. To suggest a classification, a sanitized line description and the counterparty's broad
+sector go to an EU subprocessor, Anthropic Ireland Limited. The
+[methodology page](https://app.staffkey.pl/metodologia) (in Polish) covers the k-anonymity
+thresholds, what never enters the shared pool (section 3) and both data roles (section 5).
 
 This package is deliberately small, dependency-free, and free of any network/database I/O so the
 developer audience can read it in full and verify the privacy claim: that only *derived,
@@ -23,8 +27,8 @@ It contains:
 >
 > **Honesty note:** publishing this code proves *what the logic does*. In the hosted product the
 > logic runs server-side, so this proves the logic, not that a given server runs exactly this
-> build. See the methodology page (§ "what open-sourcing does and doesn't prove") at
-> https://staffkey.pl/metodologia.
+> build. See section 4 of the methodology page ("Co otwarcie kodu udowadnia, a czego nie") at
+> https://app.staffkey.pl/metodologia.
 
 ## Develop
 
@@ -36,5 +40,6 @@ ruff check src tests
 
 ## Contributing
 
-Contributions are accepted under the **Developer Certificate of Origin (DCO)** — sign commits
-with `git commit -s`. "Staffkey" and "META Project" are not covered by any code license here.
+Contributions are accepted under the **Developer Certificate of Origin (DCO)**: sign commits
+with `git commit -s`. "Staffkey" and "META Project Tomasz Mierzwa" are not covered by any code
+license here.
