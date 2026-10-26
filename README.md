@@ -2,9 +2,12 @@
 
 **The open, auditable anonymization layer of [Staffkey](https://staffkey.pl).** Apache-2.0 licensed.
 
-Staffkey is run by **META Project Tomasz Mierzwa**, the data controller. Invoices are processed on
-Staffkey's server in the EU. The methodology page (in Polish), https://app.staffkey.pl/metodologia,
-explains the k-anonymity thresholds and what never enters the shared pool.
+Staffkey is run by **META Project Tomasz Mierzwa**: the processor for invoice data, and the
+controller for account, contact and security data. Invoices are processed on Staffkey's server in
+the EU. To suggest a classification, a sanitized line description and the counterparty's broad
+sector go to an EU subprocessor, Anthropic Ireland Limited. The
+[methodology page](https://app.staffkey.pl/metodologia) (in Polish) covers the k-anonymity
+thresholds, what never enters the shared pool (section 3) and both data roles (section 5).
 
 This package is deliberately small, dependency-free, and free of any network/database I/O so the
 developer audience can read it in full and verify the privacy claim: that only *derived,
